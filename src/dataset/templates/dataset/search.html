@@ -1,0 +1,55 @@
+{% extends 'main_with_navbar.html' %}
+{% load static %}
+
+{% block page_title %}
+  Dataset Search
+{% endblock %}
+
+{% block inner_content %}
+  <div class="dashboard">
+    <h1 class="heading-large">Search</h1>
+
+    <div class="grid-row">
+      <div class="column-two-thirds">
+        <form id="search-form" action="/dataset" method="GET">
+          <fieldset>
+            <div id="search-box">
+              <input id="q" name="q" type="text" placeholder='Search for data' class="form-control search" autocomplete="off" value="{{q}}"/>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+
+    <div class="grid-row">
+        <div class="column-two-thirds">
+            {% if total %}
+                {{ total }} results, showing page {{ current_page }} of {{ page_count }}
+            {% else %}
+                No datasets found
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="grid-row">
+        <div class="column-two-thirds">
+            <ul>
+            {% for dataset in datasets.results %}
+                {% include "dataset/search_result_item.html" with dataset=dataset %}
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <div class="pagination">
+      {% for page in page_range %}
+        {% if page == current_page %}
+          <span>{{ current_page }}</span>
+        {% else %}
+          <span><a href="?page={{ page }}{% if q %}&q={{ q }}{% endif %}">{{ page }}</a><span>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+  </div>
+{% endblock %}

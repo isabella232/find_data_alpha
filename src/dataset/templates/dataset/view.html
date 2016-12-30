@@ -1,0 +1,41 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block page_title %}
+  Dataset - {{ dataset.title }}
+{% endblock %}
+
+{% block inner_content %}
+  <div>
+    <h1 class="heading-large">{{ dataset.title }}</h1>
+    <h2 class="heading-small">{{ dataset.organization.title }}</h2>
+
+    <p class="lede">
+    {{ dataset.summary|urlize }}
+    </p>
+
+    <h2 class="heading-small">Additional notes</h2>
+    <p class="lede">
+      {{ dataset.notes|urlize }}
+    </p>
+
+  </div>
+
+
+  <div class="grid-row">
+    <div class="column-one-third">
+        filtery thing
+    </div>
+    <div class="column-two-thirds">
+        <ul>
+            {% for resource in dataset.resources %}
+            <li>
+                <a href="{{resource.url}}">{{resource.description}}</a>
+                &nbsp;
+                {{resource.format}}
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+  </div>
+{% endblock %}

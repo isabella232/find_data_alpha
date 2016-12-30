@@ -1,0 +1,138 @@
+$path: "/static/images/";
+
+$helvetica-regular: "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+$nta-light-tabular: $helvetica-regular;
+$toolkit-font-stack: $helvetica-regular;
+$toolkit-font-stack-tabular: $helvetica-regular;
+$NTA-Light: $helvetica-regular;
+$NTA-Light-Tabular: $helvetica-regular;
+$Helvetica-Regular: $helvetica-regular;
+
+@import 'govuk-elements';
+
+// govuk-* overrides
+
+#global-header #logo {
+  font-weight: normal;
+  background: none;
+  img {
+    display: none;
+  }
+}
+
+#global-header-bar {
+  display: none;
+}
+
+// start page
+
+$alpine-fresh: #128400;
+
+.product-header {
+  background-color: $alpine-fresh;
+  color: $page-colour;
+  padding: 0 30px 90px 30px;
+  .button-get-started {
+    color: $alpine-fresh;
+    background-color: $page-colour;
+  }
+
+  .login-white {
+    line-height: 42px;
+  }
+
+  a {
+    color: $page-colour;
+  }
+
+  // Start now buttons
+  .button-start,
+  .button-get-started {
+    @include bold-24;
+    background-image: file-url("icon-pointer-green.png");
+    background-repeat: no-repeat;
+    background-position: 95% 50%;
+    padding: em(5) em(41) em(6) em(16);
+
+    @include device-pixel-ratio {
+      background-image: file-url("icon-pointer-green-2x.png");
+      background-size: 30px 19px;
+    }
+
+    @include ie(6) {
+      background-image: file-url("icon-pointer-green-2x.png");
+    }
+  }
+}
+
+// navigation bar
+
+nav ul {
+  list-style-type: none;
+  margin-bottom: 1em;
+}
+
+table {
+  margin-bottom: 1em;
+}
+
+// dashboard
+
+.dashboard {
+  a:visited {
+    color: $link-colour;
+  }
+  .bignum {
+    font-size: 200%;
+    padding-right: .5em;
+  }
+  .table-title {
+    > h2 {
+      display: table-cell;
+      width: 100%;
+      vertical-align: baseline;
+    }
+    > div {
+      display: table-cell;
+      min-width: 10em;
+      vertical-align: baseline;
+      text-align: right;
+    }
+  }
+  .actions {
+    text-align: right;
+    padding-right: 0;
+    a {
+      padding-left: .2em;
+      padding-right: .2em;
+    }
+  }
+  .overdue {
+    color: $error-colour;
+    border-left: 4px solid $error-colour;
+    padding-left: 4px;
+  }
+  .passed {
+    color: $grey-1;
+  }
+  h2 {
+    margin-bottom: 0;
+  }
+  table {
+    margin-bottom: 2em;
+    &.todos {
+      border-top: 1px solid $grey-2;
+    }
+    td {
+      .nb-downloads {
+        display: inline-block;
+        min-width: 3em;
+      }
+    }
+    td {
+      .text-supporting {
+        color: $grey-1;
+      }
+    }
+  }
+}

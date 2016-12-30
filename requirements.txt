@@ -1,0 +1,4 @@
+Django==1.10.2
+django-memoize==2.0.0
+ckanapi==3.6
+flake8==3.2.1
