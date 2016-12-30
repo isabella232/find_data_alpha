@@ -1,15 +1,15 @@
 apt-get update
 apt-get install -qy  python3-dev python-virtualenv
 
-mkdir -p /usr/lib/publishing
-chown -R vagrant /usr/lib/publishing/
-virtualenv -p /usr/bin/python3 /usr/lib/publishing
-source /usr/lib/publishing/bin/activate
+mkdir -p /usr/lib/finding
+chown -R vagrant /usr/lib/finding/
+virtualenv -p /usr/bin/python3 /usr/lib/finding
+source /usr/lib/finding/bin/activate
 
 
 cd /vagrant
 pip3 install -r requirements.txt
-export DJANGO_SETTINGS_MODULE="publish_data.settings.dev"
+export DJANGO_SETTINGS_MODULE="find_data.settings.dev"
 cd src
 
 # Uncomment if you want to retrieve govuk_template instead of using the included one

@@ -1,6 +1,4 @@
-source /usr/lib/publishing/bin/activate
+source /usr/lib/finding/bin/activate
 cd /vagrant/src
-export DJANGO_SETTINGS_MODULE="publish_data.settings.dev"
-./manage.py loaddata tasks
-./manage.py loaddata stats
+export DJANGO_SETTINGS_MODULE="find_data.settings.dev"
 ./manage.py runserver 0.0.0.0:8000
