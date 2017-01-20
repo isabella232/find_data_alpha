@@ -10,7 +10,7 @@ This repository contains the alpha-stage data discovery component of data.gov.uk
 To just run on your machine with Sqlite3
 
 ``` bash
-git clone <REPO>
+git clone git@github.com:datagovuk/find_data_alpha.git
 cd find_data_alpha
 
 # vagrant machine
