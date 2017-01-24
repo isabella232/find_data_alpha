@@ -10,11 +10,30 @@ This repository contains the alpha-stage data discovery component of data.gov.uk
 To just run on your machine with Sqlite3
 
 ``` bash
-# Make and active a virtualenv for Python 3
-git clone <REPO>
+git clone git@github.com:datagovuk/find_data_alpha.git
 cd find_data_alpha
+
+# vagrant machine
+vagrant up
+vagrant ssh
+sudo apt-get install -y python-pip python-virtualenv git-core
+
+# Make and activate a virtualenv for Python 3
+virtualenv --no-site-packages --distribute -p /usr/bin/python3.4 venv
+. ~/venv/bin/activate
+
+# Install dependencies
+sudo apt-get update
+sudo apt-get install -y python3-dev libpq-dev
+cd /vagrant
 pip install -r requirements.txt
-cd src
+
+# Create local_settings.py - see "Configuration" below
+vim src/find_data/settings/local_settings.py
+
+# Run
+cd /vagrant/src
+. ~/venv/bin/activate
 export DJANGO_SETTINGS_MODULE="find_data.settings.dev"
 ./manage.py migrate
 ./manage.py runserver
@@ -22,14 +41,14 @@ export DJANGO_SETTINGS_MODULE="find_data.settings.dev"
 
 ### Configuration
 
-To successfully run the server, you will require a local_settings.py file that is stored in ```src/publish_data/settings/local_settings.py```.  The file should have the following contents:
+To successfully run the server, you will require a local_settings.py file that is stored in ```src/find_data/settings/local_settings.py```.  The file should have the following contents:
 
 ```python
 
 
 # CKAN specific settings.
 CKAN_HOST = "URL of a CKAN Server"
-CKAN_ADMIN = "An administrators API Key"
+CKAN_ADMIN = "An administrators API Key (not currently used)"
 ```
 
 ## Static assets (CSS, JS, images)
