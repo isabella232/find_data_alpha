@@ -7,7 +7,7 @@ This repository contains the alpha-stage data discovery component of data.gov.uk
 
 ## Development
 
-To just run on your machine with Sqlite3
+To just run on your machine with Sqlite3 and Sqlite
 
 ``` bash
 git clone git@github.com:datagovuk/find_data_alpha.git
@@ -46,9 +46,9 @@ To successfully run the server, you will require a local_settings.py file that i
 ```python
 
 
-# CKAN specific settings.
-CKAN_HOST = "URL of a CKAN Server"
-CKAN_ADMIN = "An administrators API Key (not currently used)"
+# Elastic search specific settings.
+ES_HOSTS='http://127.0.0.1:9200'
+ES_INDEX = 'data_discovery_dev'
 ```
 
 ## Static assets (CSS, JS, images)

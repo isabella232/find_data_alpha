@@ -19,6 +19,13 @@
       {{ dataset.notes|urlize }}
     </p>
 
+    <p>
+      First published {{ dataset.published_date }}<br/>
+      Last edited {{ dataset.last_edit_date }}<br/>
+      Update frequency {{ dataset.update_frequency }}<br/>
+      Licence {{ dataset.licence }}<br/>
+      Location {{dataset.location}}<br/>
+    </p>
   </div>
 
 
@@ -39,3 +46,5 @@
     </div>
   </div>
 {% endblock %}
+
+

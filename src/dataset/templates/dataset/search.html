@@ -34,7 +34,7 @@
     <div class="grid-row">
         <div class="column-two-thirds">
             <ul>
-            {% for dataset in datasets.results %}
+            {% for dataset in datasets %}
                 {% include "dataset/search_result_item.html" with dataset=dataset %}
             {% endfor %}
             </ul>
