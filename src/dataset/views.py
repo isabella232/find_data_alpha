@@ -3,15 +3,16 @@ import math
 from django.http import Http404
 from django.shortcuts import render
 
-from ckan_proxy.logic import dataset_show, dataset_search
+from .search import search_query, search_single_dataset
 
 
 def view_dataset(request, slug):
-    dataset = dataset_show(slug)
+    dataset = search_single_dataset(slug)
     if not dataset:
         raise Http404()
 
     return render(request, 'dataset/view.html', {'dataset': dataset})
+
 
 def search(request):
     query = request.GET.get('q')
@@ -22,9 +23,7 @@ def search(request):
     except:
         page = 1
 
-    datasets = dataset_search(query, offset=(page * 20) - 20, limit=20)
-
-    total = datasets.get('count')
+    datasets, total = search_query(query, offset=(page * 20) - 20, limit=20)
     page_count = math.ceil(float(total) / 20)
 
     return render(request, 'dataset/search.html', {
