@@ -151,8 +151,8 @@ STATICFILES_DIRS = [
 ]
 
 
-ES_HOSTS = os.environ.get('ELASTIC_HOSTS')
-ES_INDEX = os.environ.get('ELASTIC_INDEX')
+ES_HOSTS = os.environ.get('ES_HOSTS')
+ES_INDEX = os.environ.get('ES_INDEX')
 
 try:
     from .local_settings import *
