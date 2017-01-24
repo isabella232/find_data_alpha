@@ -161,3 +161,5 @@ if not (ES_HOSTS and ES_INDEX):
 
 if isinstance(ES_HOSTS, str):
     ES_HOSTS = [h.strip() for h in ES_HOSTS.split(',')]
+
+print("Using {} on {}".format(ES_INDEX, ES_HOSTS))
