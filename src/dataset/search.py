@@ -25,16 +25,26 @@ es.indices.create(
 )
 
 
-def search_query(query, offset, limit):
-    res = es.search(index=settings.ES_INDEX, body={
+def search_query(query, offset=0, limit=20):
+    q = {
         "query": {
             "simple_query_string" : {
-                "query": "*:{}".format(query),
+                "query": query or '*',
                 "fields": ["summary^5", "_all"],
                 "default_operator": "and"
             }
-        }
-    })
+        },
+        "from" : offset, "size" : limit,
+    }
+
+    if query == '*':
+        # If no relevance is specified, order by most recently
+        # modified first.
+        q["sort"] = [
+            {"last_edit_date" : {"order" : "desc"}}
+        ]
+
+    res = es.search(index=settings.ES_INDEX, body=q)
 
     datasets = [d['_source'] for d in res['hits']['hits']]
 
