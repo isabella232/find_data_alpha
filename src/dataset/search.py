@@ -1,4 +1,5 @@
 import logging
+import urllib
 
 from django.conf import settings
 
@@ -11,7 +12,17 @@ es = Elasticsearch(settings.ES_HOSTS,
           sniff_on_start=False,
           sniff_on_connection_fail=False,
           sniffer_timeout=None)
-es.indices.create(index=settings.ES_INDEX, ignore=400)
+es.indices.create(
+    index=settings.ES_INDEX,
+    body={"mappings" : {
+        "datasets" : {
+            "properties" : {
+                "name" : { "type": "string", "index" : "not_analyzed" }
+            }
+        }
+    }},
+    ignore=400
+)
 
 
 def search_query(query, offset, limit):
@@ -33,9 +44,10 @@ def search_query(query, offset, limit):
 def search_single_dataset(name):
     res = es.search(index=settings.ES_INDEX, body={
         "query": {
-            "term" : { "name" : name }
+            "term" : { "name" : name },
         }
     })
+
     if res['hits']['total'] != 1:
         return None
 
