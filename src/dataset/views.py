@@ -23,14 +23,15 @@ def search(request):
     except:
         page = 1
 
-    datasets, total = search_query(query, offset=(page * 20) - 20, limit=20)
-    page_count = math.ceil(float(total) / 20)
+    page_size = 2
+    datasets, total = search_query(query, offset=(page * page_size) - page_size, limit=page_size)
+    page_count = math.ceil(float(total) / page_size)
 
     return render(request, 'dataset/search.html', {
         'datasets': datasets,
         'total': total,
         'page_count': page_count,
-        'page_range':  range(1, page_count),
+        'page_range':  range(1, page_count+1),
         'current_page': page,
         'q': query or ""
     })
