@@ -23,7 +23,7 @@ def search(request):
     except:
         page = 1
 
-    page_size = 2
+    page_size = 20
     datasets, total = search_query(query, offset=(page * page_size) - page_size, limit=page_size)
     page_count = math.ceil(float(total) / page_size)
 
