@@ -10,7 +10,7 @@
     <h1 class="heading-large">Search</h1>
 
     <div class="grid-row">
-      <div class="column-two-thirds">
+      <div >
         <form id="search-form" action="/dataset" method="GET">
           <fieldset>
             <div id="search-box">
@@ -22,7 +22,7 @@
     </div>
 
     <div class="grid-row">
-        <div class="column-two-thirds">
+        <div>
             {% if total %}
                 {{ total }} results, showing page {{ current_page }} of {{ page_count }}
             {% else %}
@@ -32,12 +32,10 @@
     </div>
 
     <div class="grid-row">
-        <div class="column-two-thirds">
-            <ul>
+        <div>
             {% for dataset in datasets %}
                 {% include "dataset/search_result_item.html" with dataset=dataset %}
             {% endfor %}
-            </ul>
         </div>
     </div>
 

@@ -1,10 +1,8 @@
 
-{% with trimmed_notes=dataset.notes|slice:":140"  %}
-<li style="margin-bottom: 8px;">
+{% with trimmed_notes=dataset.notes|truncatechars:100  %}
+<div style='margin-top: 16px; border-left: solid 8px #ddd; padding-left: 8px;'>
     <a href="{% url 'view_dataset' slug=dataset.name %}">{{ dataset.title }}</a>
     <br>
     {{ dataset.summary|default:trimmed_notes }}
-</li>
-
-
+</div>
 {% endwith %}
