@@ -20,6 +20,11 @@ es.indices.create(
                 "name" : { "type": "string", "index" : "not_analyzed" }
             }
         }
+    },
+    "settings" : {
+        "index" : {
+            "max_result_window" : 75000,
+        }
     }},
     ignore=400
 )
