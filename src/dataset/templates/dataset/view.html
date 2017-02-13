@@ -37,7 +37,7 @@
         <ul>
             {% for resource in dataset.resources %}
             <li>
-                <a href="{{resource.url}}">{{resource.title}}</a>
+                <a href="{% url 'download' dataset.id resource.id %}">{{resource.title}}</a>
                 &nbsp;
                 {{resource.format}}
             </li>
