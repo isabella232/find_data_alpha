@@ -1,8 +1,8 @@
 
 {% with trimmed_notes=dataset.notes|truncatechars:100  %}
-<div style='margin-top: 16px; border-left: solid 8px #ddd; padding-left: 8px;'>
-    <a href="{% url 'view_dataset' slug=dataset.name %}">{{ dataset.title }}</a>
-    <br>
-    {{ dataset.summary|default:trimmed_notes }}
-</div>
+
+<h2 style="font-weight: bold; font-size: larger;"><a href="{% url 'view_dataset' slug=dataset.name %}">{{ dataset.title }}</a></h2>
+<h3 style="font-size: smaller;">{{ dataset.organisation.title }}</h3>
+<p>{{ dataset.summary|default:trimmed_notes }}</p>
+<hr/>
 {% endwith %}

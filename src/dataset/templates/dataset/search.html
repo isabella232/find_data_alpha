@@ -6,48 +6,101 @@
 {% endblock %}
 
 {% block inner_content %}
-  <div class="dashboard">
-    <h1 class="heading-large">Search</h1>
+<style>
+.filter-field {
+  margin-top: 16px;
+  background-color: #eee;
+  padding: 5px;}
+.filter-field input {
+  width: 100%; }
+.option-select-label {
+  font-size: 19px; font-weight: bold;}
+.search{
+  background-color: #fff; }
+.button {
+  font-size: 1.3em;
+  margin-top: 20px; }
+.org-list {
+  width: 100%; background-color: #fff; }
+</style>
 
-    <div class="grid-row">
-      <div >
-        <form id="search-form" action="/dataset" method="GET">
-          <fieldset>
-            <div id="search-box">
-              <input id="q" name="q" type="text" placeholder='Search for data' class="form-control search" autocomplete="off" value="{{ q }}"/>
+  <h1 class="heading-large">Search Results</h1>
+  <div class="grid-row">
+      <form id="search-form" action="/dataset" method="GET">
+
+        <div class="column-one-third" style="padding-right: 16px;">
+
+          <div class="filter-field">
+            <div class="container-head">
+              <label class="option-select-label" for="keywords">
+                Search terms
+              </label>
             </div>
-          </fieldset>
+            <input type="text" name="q" id="keywords" value="{{ q }}" maxlength="200" class="form-control search">
+          </div>
+
+
+          <div class="filter-field">
+            <div class="container-head">
+              <label class="option-select-label" for="keywords">
+                Organisation
+              </label>
+            </div>
+            <select class="org-list form-control">
+              <option>All organisations</option>
+            </select>
+          </div>
+
+          <div class="filter-field">
+            <div class="container-head">
+              <label class="option-select-label" for="keywords">
+                File formats
+              </label>
+            </div>
+            <select class="org-list form-control">
+              <option>All file formats</option>
+              <option>CSV</option>
+              <option>Excel</option>
+            </select>
+          </div>
+
+          <button class="button" type="submit">Filter</button>
         </form>
+      </div>
+
+      <div class="column-two-thirds">
+        <div class="grid-row">
+            <div>
+                {% if total %}
+                    <span class="bold-xxlarge">{{ total }}</span> results found {% if q %}containing '{{q}}'{% endif %}
+                {% else %}
+                    No datasets found
+                {% endif %}
+            </div>
+            <hr style="margin-top: 12px;"/>
+        </div>
+
+        <div class="grid-row">
+            <div>
+                {% for dataset in datasets %}
+                    {% include "dataset/search_result_item.html" with dataset=dataset %}
+                {% endfor %}
+            </div>
+        </div>
+
+        {% if page_count > 1 %}
+        <div class="pagination">
+          {% for page in page_range %}
+            {% if page == current_page %}
+              <span>{{ current_page }}</span>
+            {% else %}
+              <span><a href="?page={{ page }}{% if q %}&q={{ q }}{% endif %}">{{ page }}</a><span>
+            {% endif %}
+          {% endfor %}
+        </div>
+        {% endif %}
+
       </div>
     </div>
 
-    <div class="grid-row">
-        <div>
-            {% if total %}
-                {{ total }} results, showing page {{ current_page }} of {{ page_count }}
-            {% else %}
-                No datasets found
-            {% endif %}
-        </div>
-    </div>
-
-    <div class="grid-row">
-        <div>
-            {% for dataset in datasets %}
-                {% include "dataset/search_result_item.html" with dataset=dataset %}
-            {% endfor %}
-        </div>
-    </div>
-
-    <div class="pagination">
-      {% for page in page_range %}
-        {% if page == current_page %}
-          <span>{{ current_page }}</span>
-        {% else %}
-          <span><a href="?page={{ page }}{% if q %}&q={{ q }}{% endif %}">{{ page }}</a><span>
-        {% endif %}
-      {% endfor %}
-    </div>
-
-  </div>
 {% endblock %}

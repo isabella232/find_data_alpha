@@ -9,91 +9,24 @@
   <div class="dashboard">
     <h1 class="heading-xlarge">Search for data</h1>
 
+    <div class="grid-row">
+        <form id="search-form" action="/dataset" method="GET" class="column-two-thirds">
+          <fieldset>
+            <div id="search-box">
+            <nobr>
+              <input id="q" name="q" type="text" placeholder='Search for data' class="form-control search" autocomplete="off" style="width: 100%; height: 50px;"/>
+              <button type="submit" class="button" style="height: 50px;  margin-top: -1px">Find data</button>
+              </nobr>
+            </div>
+          </fieldset>
+        </form>
+        <p class="lede search-blurb column-two-thirds">Find data published by government departments and agencies,
+        public bodies and local authorities. You can use this data to learn
+        more about how government works, carry out research or build
+        applications and services.
+        </p>
 
-<div class="grid-row">
-  <div class="column-two-thirds">
-    <form id="search-form" action="/dataset" method="GET">
-      <fieldset>
-        <div id="search-box">
-          <input id="q" name="q" type="text" placeholder='Search for data' class="form-control search" autocomplete="off"/>
-        </div>
-      </fieldset>
-    </form>
-    <p class="search-blurb">Find data published by government departments and agencies,
-    public bodies and local authorities. You can use this data to learn
-    more about how government works, carry out research or build
-    applications and services.
-    </p>
-  </div>
-</div>
-
-
-<h1 class="heading-small">Browse by theme</h1>
-<hr/>
-
- <div class="grid-row"/>
-  <div class="column-one-third">
-    <h1 class="heading-small"><a href="/dataset?theme-primary=Business%20%26%20Economy">Business and economy</a></h1>
-          <p>Small businesses, industry, imports, exports and trade</p>
-  </div>
-
-  <div class="column-one-third">
-    <h1 class="heading-small"><a href="/dataset?theme-primary=Crime%20%26%20Justice">Crime and justice</a></h1>
-          <p>Courts, police, prisons, offenders, borders and immigration</p>
-  </div>
-
-  <div class="column-one-third">
-    <h1 class="heading-small"><a href="/dataset?theme-primary=Defence">Defence</a></h1>
-    <p>Armed forces, health and safety, search and rescue</p>
-  </div>
-
-  <div class="column-one-third">
-    <h1 class="heading-small"><a href="/dataset?theme-primary=Education">Education</a></h1>
-          <p>Students, training, qualifications and the National Curriculum</p>
-  </div>
-
-  <div class="column-one-third">
-    <h1 class="heading-small"><a href="/dataset?theme-primary=Environment">Environment</a></h1>
-          <p>Weather, flooding, rivers, air quality, geology and agriculture</p>
-  </div>
-
-  <div class="column-one-third">
-    <h1 class="heading-small"><a href="/dataset?theme-primary=Government">Government</a></h1>
-          <p>Staff numbers and pay, local councillors and department business plans</p>
-  </div>
-
-  <div class="column-one-third">
-    <h1 class="heading-small"><a href="/dataset?theme-primary=Government%20Spending">Government spending</a></h1>
-          <p>Includes all payments by government departments over £25,000</p>
-  </div>
-
-  <div class="column-one-third">
-    <h1 class="heading-small"><a href="/dataset?theme-primary=Health">Health</a></h1>
-          <p>Includes smoking, drugs, alcohol, medicine performance and hospitals</p>
-  </div>
-
-  <div class="column-one-third">
-    <h1 class="heading-small"><a href="/dataset?theme-primary=Mapping">Mapping</a></h1>
-          <p>Addresses, boundaries, land ownership, aerial photographs, seabed and land terrain</p>
-  </div>
-
-  <div class="column-one-third">
-    <h1 class="heading-small"><a href="/dataset?theme-primary=Society">Society</a></h1>
-          <p>Employment, benefits, household finances, poverty and population</p>
-  </div>
-
-  <div class="column-one-third">
-    <h1 class="heading-small"><a href="/dataset?theme-primary=Towns%20%26%20Cities">Towns and cities</a></h1>
-          <p>Includes housing, urban planning, leisure, waste and energy consumption</p>
-  </div>
-
-  <div class="column-one-third">
-    <h1 class="heading-small"><a href="/dataset?theme-primary=Transport">Transport</a></h1>
-          <p>Airports, roads, freight, electric vehicles, parking, buses and footpaths</p>
-   </div>
-
-</div>
-
+    </div>
 
   </div>
 {% endblock %}
