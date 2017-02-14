@@ -40,6 +40,7 @@ REQUIRED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
 ]
 
 PROJECT_APPS = [
@@ -51,10 +52,10 @@ PROJECT_APPS = [
 INSTALLED_APPS = REQUIRED_APPS + PROJECT_APPS
 
 
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'find_data.middleware.BasicAuthenticationMiddleware',
@@ -82,6 +83,14 @@ TEMPLATES = [
         },
     },
 ]
+
+#### CORS settings
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_WHITELIST = ()
+CORS_ORIGIN_REGEX_WHITELIST = ()
+CORS_URLS_REGEX = '^.*$'
+CORS_PREFLIGHT_MAX_AGE = 86400
+
 
 WSGI_APPLICATION = 'find_data.wsgi.application'
 
