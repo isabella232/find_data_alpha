@@ -15,6 +15,7 @@ def view_dataset(request, slug):
     StatRecord.record_now(
         dataset['organisation']['id'],
         dataset['id'],
+        dataset['title'],
         'view'
     )
 
@@ -38,6 +39,7 @@ def search(request):
         StatRecord.record_bulk_now(
             [d['organisation']['id'] for d in datasets],
             [d['id'] for d in datasets],
+            [d['title'] for d in datasets],
             'search'
         )
 
