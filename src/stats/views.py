@@ -37,26 +37,3 @@ def top(request):
 
     res = [o for o in q.all()[0:count]]
     return JsonResponse(res, safe=False)
-
-
-def top_organisation(request, organisation_id):
-    count = request.GET.get('count') or 10
-    stat = request.GET.get('stat')
-
-    q = _apply_date(request, StatRecord.objects)
-    q = q.filter(organisation_id=organisation_id)
-    if stat:
-        q = q.filter(statistic=stat)
-
-    keys = ['dataset_title', 'dataset_id', 'organisation_id', 'statistic']
-    if 'year' in request.GET:
-        keys.append('year')
-    if 'month' in request.GET:
-        keys.append('month')
-
-    q = q.values(*keys).annotate(total=Sum('counter'))
-    q = q.order_by('-total')
-
-
-    res = [o for o in q.all()[0:count]]
-    return JsonResponse(res, safe=False)
