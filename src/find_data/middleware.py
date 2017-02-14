@@ -31,6 +31,9 @@ class BasicAuthenticationMiddleware(object):
     def __call__(self, request):
         response = self.get_response(request)
 
+        if request.path.startswith('/stats'):
+            return response
+
         if not os.environ.get('HTTP_USERNAME'):
             return response
 
