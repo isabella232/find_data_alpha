@@ -8,16 +8,22 @@
 
 {% block inner_content %}
   <div>
-    <h1 class="heading-xlarge">{{ dataset.title }}</h1>
+    <div class="grid-row">
+      <div class="column-two-thirds">
+        <h1 class="heading-xlarge">{{ dataset.title }}</h1>
+      </div>
+    </div>
 
     <ul class="dataset-details">
       <li><div>{% trans "Published by:" %}</div><a href="">{{ dataset.organisation.title }}</a></li>
       <li><div>{% trans "Last updated:" %}</div>{{ last_updated }}</li>
     </ul>
 
-    <p>
-      {{ dataset.summary|urlize }}
-    </p>
+    <div class="grid-row">
+      <div class="column-two-thirds">
+        <p>{{ dataset.summary|urlize }}</p>
+      </div>
+    </div>
 
     {% if dataset.resources %}
       <div class="grid-row dataset-section">
@@ -33,7 +39,7 @@
                 {{ resource.title }}
                 <br/>
                 <a href="TODO">{% trans 'Preview' %}</a>
-                <a href="{% url 'download' dataset.id resource.id %}">{% trans 'Download ' %}&nbsp;{{resource.format}}</a>
+                <a href="{% url 'download' dataset.id resource.id %}">{% trans 'Download' %}&nbsp;{{resource.format}}</a>
                 <span>23KB</span>
               </li>
             {% endfor %}
