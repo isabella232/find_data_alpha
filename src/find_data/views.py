@@ -27,8 +27,8 @@ def download(request, dataset_id, resource_id):
 
     StatRecord.record_now(
         dataset['organisation']['id'],
-        dataset['title'],
         dataset['id'],
+        dataset['title'],
         'download'
     )
 
