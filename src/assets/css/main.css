@@ -1596,88 +1596,41 @@ input[type=number] {
 #global-header-bar {
   display: none; }
 
-.product-header {
-  background-color: #128400;
-  color: #fff;
-  padding: 0 30px 90px 30px; }
-  .product-header .button-get-started {
-    color: #128400;
-    background-color: #fff; }
-  .product-header .login-white {
-    line-height: 42px; }
-  .product-header a {
-    color: #fff; }
-  .product-header .button-start,
-  .product-header .button-get-started {
-    font-family: "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
-    font-weight: 700;
-    text-transform: none;
-    font-size: 18px;
-    line-height: 1.2;
-    background-image: url("/static/images/icon-pointer-green.png");
-    background-repeat: no-repeat;
-    background-position: 95% 50%;
-    padding: 0.26316em 2.15789em 0.31579em 0.84211em; }
-    @media (min-width: 641px) {
-      .product-header .button-start,
-      .product-header .button-get-started {
-        font-size: 24px;
-        line-height: 1.25; } }
-    @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 20 / 10), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-      .product-header .button-start,
-      .product-header .button-get-started {
-        background-image: url("/static/images/icon-pointer-green-2x.png");
-        background-size: 30px 19px; } }
-
-nav ul {
-  list-style-type: none;
-  margin-bottom: 1em; }
-
-table {
-  margin-bottom: 1em; }
-
-.dashboard a:visited {
-  color: #005ea5; }
-
-.dashboard .bignum {
-  font-size: 200%;
-  padding-right: .5em; }
-
-.dashboard .table-title > h2 {
-  display: table-cell;
-  width: 100%;
-  vertical-align: baseline; }
-
-.dashboard .table-title > div {
-  display: table-cell;
-  min-width: 10em;
-  vertical-align: baseline;
-  text-align: right; }
-
-.dashboard .actions {
-  text-align: right;
-  padding-right: 0; }
-  .dashboard .actions a {
-    padding-left: .2em;
-    padding-right: .2em; }
-
-.dashboard .overdue {
-  color: #b10e1e;
-  border-left: 4px solid #b10e1e;
-  padding-left: 4px; }
-
-.dashboard .passed {
-  color: #6f777b; }
-
-.dashboard h2 {
-  margin-bottom: 0; }
-
-.dashboard table {
-  margin-bottom: 2em; }
-  .dashboard table.todos {
-    border-top: 1px solid #bfc1c3; }
-  .dashboard table td .nb-downloads {
+.dataset-details {
+  font-size: 90%;
+  margin-bottom: 3em; }
+  .dataset-details div {
     display: inline-block;
-    min-width: 3em; }
-  .dashboard table td .text-supporting {
+    width: 8em; }
+
+.dataset-section {
+  margin-top: 4em; }
+  .dataset-section .dataset-section-heading {
+    margin: 0;
+    font-weight: 100; }
+  .dataset-section .dataset-download {
+    text-align: right; }
+    .dataset-section .dataset-download a {
+      font-weight: bold; }
+  .dataset-section .dataset-size {
+    padding-left: 1em; }
+  .dataset-section ul.resources li {
+    border-bottom: 2px solid #bfc1c3;
+    padding-bottom: .8em;
+    margin-top: .5em; }
+    .dataset-section ul.resources li a {
+      padding-right: 1em;
+      font-weight: bold; }
+
+.dataset-updates {
+  margin-top: 2em; }
+  .dataset-updates .dataset-update {
+    font-weight: 700;
+    font-size: 150%; }
+  .dataset-updates h4 {
+    margin-top: 1em; }
+
+.dataset-feedback {
+  margin-top: 5em; }
+  .dataset-feedback a:visited, .dataset-feedback a:link {
     color: #6f777b; }

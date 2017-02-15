@@ -24,115 +24,62 @@ $Helvetica-Regular: $helvetica-regular;
   display: none;
 }
 
-// start page
 
-$alpine-fresh: #128400;
+// widgets
 
-.product-header {
-  background-color: $alpine-fresh;
-  color: $page-colour;
-  padding: 0 30px 90px 30px;
-  .button-get-started {
-    color: $alpine-fresh;
-    background-color: $page-colour;
-  }
+.dataset-details {
+  font-size: 90%;
+  margin-bottom: 3em;
 
-  .login-white {
-    line-height: 42px;
-  }
-
-  a {
-    color: $page-colour;
-  }
-
-  // Start now buttons
-  .button-start,
-  .button-get-started {
-    @include bold-24;
-    background-image: file-url("icon-pointer-green.png");
-    background-repeat: no-repeat;
-    background-position: 95% 50%;
-    padding: em(5) em(41) em(6) em(16);
-
-    @include device-pixel-ratio {
-      background-image: file-url("icon-pointer-green-2x.png");
-      background-size: 30px 19px;
-    }
-
-    @include ie(6) {
-      background-image: file-url("icon-pointer-green-2x.png");
-    }
+  div {
+    display: inline-block;
+    width: 8em;
   }
 }
 
-// navigation bar
+.dataset-section {
+  margin-top: 4em;
 
-nav ul {
-  list-style-type: none;
-  margin-bottom: 1em;
-}
-
-table {
-  margin-bottom: 1em;
-}
-
-// dashboard
-
-.dashboard {
-  a:visited {
-    color: $link-colour;
+  .dataset-section-heading {
+    margin: 0;
+    font-weight: 100;
   }
-  .bignum {
-    font-size: 200%;
-    padding-right: .5em;
-  }
-  .table-title {
-    > h2 {
-      display: table-cell;
-      width: 100%;
-      vertical-align: baseline;
-    }
-    > div {
-      display: table-cell;
-      min-width: 10em;
-      vertical-align: baseline;
-      text-align: right;
-    }
-  }
-  .actions {
+
+  .dataset-download {
     text-align: right;
-    padding-right: 0;
+    a { font-weight: bold; }
+  }
+
+  .dataset-size {
+    padding-left: 1em;
+  }
+
+  ul.resources li {
+    border-bottom: 2px solid $grey-2;
+    padding-bottom: .8em;
+    margin-top: .5em;
     a {
-      padding-left: .2em;
-      padding-right: .2em;
+      padding-right: 1em;
+      font-weight: bold;
     }
   }
-  .overdue {
-    color: $error-colour;
-    border-left: 4px solid $error-colour;
-    padding-left: 4px;
+
+}
+
+.dataset-updates {
+  margin-top: 2em;
+  .dataset-update {
+    font-weight: 700;
+    font-size: 150%;
   }
-  .passed {
+  h4 {
+    margin-top: 1em;
+  }
+}
+
+.dataset-feedback {
+  margin-top: 5em;
+  a:visited, a:link {
     color: $grey-1;
-  }
-  h2 {
-    margin-bottom: 0;
-  }
-  table {
-    margin-bottom: 2em;
-    &.todos {
-      border-top: 1px solid $grey-2;
-    }
-    td {
-      .nb-downloads {
-        display: inline-block;
-        min-width: 3em;
-      }
-    }
-    td {
-      .text-supporting {
-        color: $grey-1;
-      }
-    }
   }
 }

@@ -1,4 +1,6 @@
 import math
+import datetime
+import dateutil.parser
 
 from django.http import Http404
 from django.shortcuts import render
@@ -19,7 +21,17 @@ def view_dataset(request, slug):
         'view'
     )
 
-    return render(request, 'dataset/view.html', {'dataset': dataset})
+    last_edit_date = dateutil.parser.parse(dataset['last_edit_date'])
+
+    return render(
+        request,
+        'dataset/view.html',
+        {
+            'dataset': dataset,
+            'last_updated': datetime.date.strftime(last_edit_date, '%d %B %Y'),
+            'last_edit_date': datetime.date.strftime(last_edit_date, '%B %Y')
+        }
+    )
 
 
 def search(request):
@@ -51,5 +63,3 @@ def search(request):
         'current_page': page,
         'q': query or ""
     })
-
-
