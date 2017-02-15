@@ -1,50 +1,148 @@
 {% extends 'main.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block page_title %}
-  Dataset - {{ dataset.title }}
+  {% trans "Dataset" %} - {{ dataset.title }}
 {% endblock %}
 
 {% block inner_content %}
   <div>
-    <h1 class="heading-large">{{ dataset.title }}</h1>
-    <h2 class="heading-small">{{ dataset.organisation.title }}</h2>
+    <h1 class="heading-xlarge">{{ dataset.title }}</h1>
 
-    <p class="lede">
-    {{ dataset.summary|urlize }}
-    </p>
-
-    <h2 class="heading-small">Additional notes</h2>
-    <p class="lede">
-      {{ dataset.notes|urlize }}
-    </p>
+    <ul class="dataset-details">
+      <li><div>{% trans "Published by:" %}</div><a href="">{{ dataset.organisation.title }}</a></li>
+      <li><div>{% trans "Last updated:" %}</div>{{ last_updated }}</li>
+    </ul>
 
     <p>
-      First published {{ dataset.published_date }}<br/>
-      Last edited {{ dataset.last_edit_date }}<br/>
-      Update frequency {{ dataset.update_frequency }}<br/>
-      Licence {{ dataset.licence }}<br/>
-      Location {{dataset.location1}}, {{dataset.location2}}, {{dataset.location3}}<br/>
+      {{ dataset.summary|urlize }}
+    </p>
+
+    {% if dataset.resources %}
+      <div class="grid-row dataset-section">
+        <div class="column-one-third">
+          <h2 class="dataset-section-heading heading-large">{% trans 'Data' %}</h2>
+        </div>
+
+        <div class="column-two-thirds">
+          <p class="dataset-download"><a href="TODO">{% trans 'Download all' %}</a><span class="dataset-size">10MB</span></p>
+          <ul class="resources">
+            {% for resource in dataset.resources %}
+              <li>
+                {{ resource.title }}
+                <br/>
+                <a href="TODO">{% trans 'Preview' %}</a>
+                <a href="{% url 'download' dataset.id resource.id %}">{% trans 'Download ' %}&nbsp;{{resource.format}}</a>
+                <span>23KB</span>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    {% endif %}
+
+    {% if dataset.documentation %}
+      <div class="grid-row dataset-section">
+        <div class="column-one-third">
+          <h2 class="dataset-section-heading heading-large">{% trans 'Supporting documents' %}</h2>
+        </div>
+
+        <div class="column-two-thirds">
+          <ul class="resources">
+            {% for doc in dataset.documentation %}
+              <li>
+                {{ doc.title }}
+                <br/>
+                <a href="TODO">{% trans 'Preview' %}</a>
+                <a href="{% url 'download' dataset.id doc.id %}">{% trans 'Download ' %}&nbsp;{{doc.format}}</a>
+                <span>23KB</span>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    {% endif %}
+
+    <div class="grid-row dataset-section">
+      <div class="column-one-third">
+        <h2 class="dataset-section-heading heading-large">{% trans 'Additional information' %}</h2>
+      </div>
+      <div class="column-two-thirds">
+        <ul>
+          <li>
+            {% trans 'This dataset is available under the' %}
+            {% if dataset.licence == 'uk-ogl' %}
+              <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/">
+                {% trans 'Open Government Licence' %}
+              </a>
+            {% else %}
+              {{ dataset.licence_other }}
+            {% endif %}
+          </li>
+          {% if dataset.published_date %}
+            <li>{% trans 'This dataset was first published on' %} {{ dataset.published_date }}</li>
+          {% endif %}
+          {% if dataset.update_frequency %}
+            <li>{% trans 'This dataset is updated' %} {{ dataset.update_frequency }}</li>
+          {% endif %}
+          {% if dataset.location1 %}
+            <li>
+              {% trans 'This dataset covers' %} {{dataset.location1}}
+              {% if dataset.location2 %}, {{dataset.location2}}{% endif %}
+              {% if dataset.location3 %}, {{dataset.location3}}{% endif %}
+            </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+
+    {% if dataset.notes %}
+      <div class="grid-row dataset-section">
+        <div class="column-one-third">
+          <h2 class="dataset-section-heading heading-large">{% trans 'Notes' %}</h2>
+        </div>
+        <div class="column-two-thirds">
+          {{ dataset.notes|urlize }}
+        </div>
+      </div>
+    {% endif %}
+
+    <div class="grid-row dataset-section">
+      <div class="column-one-third">
+        <h2 class="dataset-section-heading heading-large">{% trans 'Contact' %}</h2>
+      </div>
+      <div class="column-one-third">
+        <h3 class="dataset-section-heading heading-medium">{% trans 'Enquiries:' %}</h3>
+        <ul>
+          <li><a href="mailto:enquiries@hscic.gov.uk">enquiries@hscic.gov.uk</a></li>
+          <li>Telephone: 0300 303 5678</li>
+        </ul>
+      </div>
+      <div class="column-one-third">
+        <h3 class="dataset-section-heading heading-medium">
+          <abbr title="Freedom of information">{% trans 'FOI' %}</abbr> {% trans 'requests:' %}
+        </h3>
+        <ul>
+          <li><a href="mailto:enquiries@hscic.gov.uk">enquiries@hscic.gov.uk</a></li>
+          <li>Telephone: 0300 303 5678</li>
+          <li><a href="http://www.hscic.gov.uk/foi">http://www.hscic.gov.uk/foi</a></li>
+        </ul>
+      </div>
+    </div>
+
+
+    <div class="dataset-updates">
+      <h4>{% trans 'Expected update: ' %}</h4>
+      <div class="dataset-update">November 2019</div>
+      <h4>{% trans 'Last updated: ' %}</h4>
+      <div class="dataset-update">{{ last_edit_date }}</div>
+    </div>
+
+    <div><a href="XYZ" class="secondary-button">+{% trans 'full page history' %}</a></div>
+
+    <p class="dataset-feedback">
+      <a href="meh">{% trans 'Is there anything wrong with this page?' %}</a>
     </p>
   </div>
-
-
-  <div class="grid-row">
-    <div class="column-one-third">
-        filtery thing
-    </div>
-    <div class="column-two-thirds">
-        <ul>
-            {% for resource in dataset.resources %}
-            <li>
-                <a href="{% url 'download' dataset.id resource.id %}">{{resource.title}}</a>
-                &nbsp;
-                {{resource.format}}
-            </li>
-            {% endfor %}
-        </ul>
-    </div>
-  </div>
 {% endblock %}
-
-
