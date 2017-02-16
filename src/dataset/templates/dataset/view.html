@@ -1,6 +1,7 @@
 {% extends 'main.html' %}
 {% load static %}
 {% load i18n %}
+{% load human_date %}
 
 {% block page_title %}
   {% trans "Dataset" %} - {{ dataset.title }}
@@ -16,7 +17,7 @@
 
     <ul class="dataset-details">
       <li><div>{% trans "Published by:" %}</div><a href="">{{ dataset.organisation.title }}</a></li>
-      <li><div>{% trans "Last updated:" %}</div>{{ last_updated }}</li>
+      <li><div>{% trans "Last updated:" %}</div>{{ dataset.last_edit_date|human_date:'%d %B %Y' }}</li>
     </ul>
 
     <div class="grid-row">
@@ -87,7 +88,7 @@
             {% endif %}
           </li>
           {% if dataset.published_date %}
-            <li>{% trans 'This dataset was first published on' %} {{ dataset.published_date }}</li>
+            <li>{% trans 'This dataset was first published on' %} {{ dataset.published_date|human_date:'%d %B %Y' }}</li>
           {% endif %}
           {% if dataset.update_frequency %}
             <li>{% trans 'This dataset is updated' %} {{ dataset.update_frequency }}</li>
@@ -142,7 +143,7 @@
       <h4>{% trans 'Expected update: ' %}</h4>
       <div class="dataset-update">November 2019</div>
       <h4>{% trans 'Last updated: ' %}</h4>
-      <div class="dataset-update">{{ last_edit_date }}</div>
+      <div class="dataset-update">{{ dataset.last_edit_date|human_date:'%B %Y' }}</div>
     </div>
 
     <div><a href="XYZ" class="secondary-button">+{% trans 'full page history' %}</a></div>
