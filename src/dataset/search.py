@@ -67,3 +67,26 @@ def search_single_dataset(name):
         return None
 
     return res['hits']['hits'][0]['_source']
+
+def more_like(dataset):
+
+    like = dataset.get('title') + ' ' + dataset.get('notes') + ' ' + dataset.get('summary'),
+    q = {
+        "query": {
+            "more_like_this" : {
+                "fields" : ["title", "summary", "notes"],
+                "like" : like,
+                "min_term_freq" : 3,
+                "max_query_terms" : 12
+            }
+        },
+        "from" : 0, "size" : 10,
+    }
+
+    res = es.search(index=settings.ES_INDEX, body=q)
+
+    if res['hits']['total'] == 0:
+        return None
+
+    return [d['_source'] for d in res['hits']['hits']]
+
