@@ -17,7 +17,8 @@ es.indices.create(
     body={"mappings" : {
         "datasets" : {
             "properties" : {
-                "name" : { "type": "string", "index" : "not_analyzed" }
+                "name" : { "type": "string", "index" : "not_analyzed" },
+                "organisation_name" : { "type": "string", "index" : "not_analyzed" }
             }
         }
     },
@@ -30,19 +31,32 @@ es.indices.create(
 )
 
 
-def search_query(query, offset=0, limit=20):
+def search_query(query, filters=None, offset=0, limit=20):
+
+    query_string = None
+
+    if filters:
+        filter_string = ' AND '.join('{}:{}'.format(k, v) for k, v in filters.items())
+        if query:
+            query_string = '{} {}'.format(query, filter_string)
+        else:
+            query_string = filter_string
+    else:
+        query_string = query or '*'
+
+
     q = {
         "query": {
-            "simple_query_string" : {
-                "query": query or '*',
-                "fields": ["summary^5", "_all"],
+            "query_string" : {
+                "query": query_string,
+                "fields": ["summary^2", "title^3", "description^1", "_all"],
                 "default_operator": "and"
             }
         },
         "from" : offset, "size" : limit,
     }
 
-    if query == '*':
+    if not query:
         # If no relevance is specified, order by most recently
         # modified first.
         q["sort"] = [

@@ -1,3 +1,4 @@
+import collections
 import math
 
 from django.http import Http404
@@ -24,6 +25,11 @@ def view_dataset(request, slug):
     return render(request, 'dataset/view.html', { 'dataset': dataset, 'more': more })
 
 
+FILTERS = {
+    'organisation': 'organisation_name',
+    'publisher': 'organisation_name'
+}
+
 def search(request):
     query = request.GET.get('q')
 
@@ -33,8 +39,16 @@ def search(request):
     except:
         page = 1
 
+    applied_filters = {}
+    filters = {}
+    for k, v in FILTERS.items():
+        val = request.GET.get(k)
+        if val:
+            filters[v] = val
+            applied_filters[k] = val
+
     page_size = 20
-    datasets, total = search_query(query, offset=(page * page_size) - page_size, limit=page_size)
+    datasets, total = search_query(query, filters=filters, offset=(page * page_size) - page_size, limit=page_size)
     page_count = math.ceil(float(total) / page_size)
 
     if query:
@@ -45,7 +59,14 @@ def search(request):
             'search'
         )
 
+    organisations = collections.OrderedDict()
+    organisations['cabinet-office'] = 'Cabinet Office'
+
+
+
     return render(request, 'dataset/search.html', {
+        'organisations': organisations,
+        'applied_filters': applied_filters,
         'datasets': datasets,
         'total': total,
         'page_count': page_count,

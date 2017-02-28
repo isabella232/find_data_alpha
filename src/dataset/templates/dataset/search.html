@@ -1,5 +1,6 @@
 {% extends 'main_with_navbar.html' %}
 {% load static %}
+{% load filters_string %}
 
 {% block page_title %}
   Dataset Search
@@ -46,8 +47,14 @@
                 Organisation
               </label>
             </div>
-            <select class="org-list form-control">
-              <option>All organisations</option>
+
+            <select class="org-list form-control" name='organisation'>
+              <option value=''>All organisations</option>
+              {% with applied_filters.organisation as applied %}
+                {% for k, v in organisations.items %}
+                  <option value='{{ k }}' {% if applied == k %}selected{% endif %}>{{ v }}</option>
+                {% endfor %}
+              {% endwith %}
             </select>
           </div>
 
@@ -94,7 +101,7 @@
             {% if page == current_page %}
               <span>{{ current_page }}</span>
             {% else %}
-              <span><a href="?page={{ page }}{% if q %}&q={{ q }}{% endif %}">{{ page }}</a><span>
+              <span><a href="?{{ applied_filters|filters_string }}page={{ page }}{% if q %}&q={{ q }}{% endif %}">{{ page }}</a><span>
             {% endif %}
           {% endfor %}
         </div>
