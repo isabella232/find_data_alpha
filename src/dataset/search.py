@@ -84,6 +84,10 @@ def search_single_dataset(name):
 
 def more_like(dataset):
 
+    # TODO: Remove after re-index
+    if not 'organisation_name' in dataset:
+        dataset['organisation_name'] = ''
+
     like = '{title} {summary} {notes} {organisation_name}'.format(**dataset)
     q = {
         "query": {
