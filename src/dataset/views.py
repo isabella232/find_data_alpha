@@ -4,7 +4,7 @@ import math
 from django.http import Http404
 from django.shortcuts import render
 
-from .search import search_query, search_single_dataset
+from .search import search_query, search_single_dataset, more_like
 
 from stats.models import StatRecord
 
@@ -20,7 +20,9 @@ def view_dataset(request, slug):
         'view'
     )
 
-    return render(request, 'dataset/view.html', { 'dataset': dataset })
+    more = more_like(dataset)
+
+    return render(request, 'dataset/view.html', { 'dataset': dataset, 'more': more })
 
 
 FILTERS = {

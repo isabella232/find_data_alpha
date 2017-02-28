@@ -116,7 +116,27 @@
       </div>
     {% endif %}
 
+
     {% contacts dataset=dataset %}
+
+    {% if more %}
+    <div class="grid-row dataset-section">
+      <div class="column-one-third">
+        <h2 class="dataset-section-heading heading-large">{% trans 'More like this' %}</h2>
+      </div>
+      <div class="column-two-thirds">
+        <div class="grid-row">
+          <ul>
+          {% for match in more %}
+            {% if match.name != dataset.name %}
+            <li><a href="{{match.name}}">{{ match.title }}</a></li>
+            {% endif %}
+          {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+    {% endif %}
 
     <div class="dataset-updates">
       <h4>{% trans 'Expected update: ' %}</h4>
