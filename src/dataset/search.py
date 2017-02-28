@@ -70,13 +70,13 @@ def search_single_dataset(name):
 
 def more_like(dataset):
 
-    like = dataset.get('title') + ' ' + dataset.get('notes') + ' ' + dataset.get('summary'),
+    like = '{title} {summary} {notes} {organisation_name}'.format(**dataset)
     q = {
         "query": {
             "more_like_this" : {
-                "fields" : ["title", "summary", "notes"],
+                "fields" : ["title^3", "summary^3", "notes", "organisation_name^2"],
                 "like" : like,
-                "min_term_freq" : 3,
+                "min_term_freq" : 4,
                 "max_query_terms" : 12
             }
         },
