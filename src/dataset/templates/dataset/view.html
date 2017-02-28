@@ -2,6 +2,7 @@
 {% load static %}
 {% load i18n %}
 {% load human_date %}
+{% load contacts %}
 
 {% block page_title %}
   {% trans "Dataset" %} - {{ dataset.title }}
@@ -16,7 +17,7 @@
     </div>
 
     <ul class="dataset-details">
-      <li><div>{% trans "Published by:" %}</div><a href="">{{ dataset.organisation.title }}</a></li>
+      <li><div>{% trans "Published by:" %}</div><a href="{% url 'search' %}?organisation={{ dataset.organisation.name }}">{{ dataset.organisation.title }}</a></li>
       <li><div>{% trans "Last updated:" %}</div>{{ dataset.last_edit_date|human_date:'%d %B %Y' }}</li>
     </ul>
 
@@ -115,28 +116,8 @@
       </div>
     {% endif %}
 
-    <div class="grid-row dataset-section">
-      <div class="column-one-third">
-        <h2 class="dataset-section-heading heading-large">{% trans 'Contact' %}</h2>
-      </div>
-      <div class="column-one-third">
-        <h3 class="dataset-section-heading heading-medium">{% trans 'Enquiries:' %}</h3>
-        <ul>
-          <li><a href="mailto:enquiries@hscic.gov.uk">enquiries@hscic.gov.uk</a></li>
-          <li>Telephone: 0300 303 5678</li>
-        </ul>
-      </div>
-      <div class="column-one-third">
-        <h3 class="dataset-section-heading heading-medium">
-          <abbr title="Freedom of information">{% trans 'FOI' %}</abbr> {% trans 'requests:' %}
-        </h3>
-        <ul>
-          <li><a href="mailto:enquiries@hscic.gov.uk">enquiries@hscic.gov.uk</a></li>
-          <li>Telephone: 0300 303 5678</li>
-          <li><a href="http://www.hscic.gov.uk/foi">http://www.hscic.gov.uk/foi</a></li>
-        </ul>
-      </div>
-    </div>
+
+    {% contacts dataset=dataset %}
 
     {% if more %}
     <div class="grid-row dataset-section">
@@ -156,7 +137,6 @@
       </div>
     </div>
     {% endif %}
-
 
     <div class="dataset-updates">
       <h4>{% trans 'Expected update: ' %}</h4>

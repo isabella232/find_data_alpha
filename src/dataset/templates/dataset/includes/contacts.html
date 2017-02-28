@@ -1,0 +1,42 @@
+{% load i18n %}
+<div class="grid-row dataset-section">
+  <div class="column-one-third">
+    <h2 class="dataset-section-heading heading-large">{% trans 'Contact' %}</h2>
+  </div>
+  <div class="column-one-third">
+    <h3 class="dataset-section-heading heading-medium">{% trans 'Enquiries:' %}</h3>
+    {% if has_contact %}
+    <ul>
+      {% if contact_email %}
+        <li><a href="mailto:{{contact_email}}">{{contact_email}}</a></li>
+      {% endif %}
+      {% if contact_phone %}
+        <li>{% trans 'Telephone:' %} {{ contact_phone }}</li>
+      {% endif %}
+    </ul>
+    {% else %}
+      {% trans 'No contact details provided' %}
+    {% endif %}
+  </div>
+  <div class="column-one-third">
+    <h3 class="dataset-section-heading heading-medium">
+      <abbr title="Freedom of information">{% trans 'FOI' %}</abbr> {% trans 'requests:' %}
+    </h3>
+    {% if has_foi %}
+    <ul>
+      {% if foi_email %}
+        <li><a href="mailto:{{ foi_email }}">{{ foi_email }}</a></li>
+      {% endif %}
+      {% if foi_phone %}
+        <li>{% trans 'Telephone:' %} {{ foi_phone }}</li>
+      {% endif %}
+      {% if foi_web %}
+        <li><a href="{{ foi_web }}">{{ foi_web }}</a></li>
+      {% endif%}
+    </ul>
+    {% else %}
+      {% trans 'No FOI details provided' %}
+    {% endif %}
+
+  </div>
+</div>
