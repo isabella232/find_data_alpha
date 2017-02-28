@@ -98,7 +98,7 @@ def more_like(dataset):
                 "max_query_terms" : 12
             }
         },
-        "from" : 0, "size" : 10,
+        "from" : 0, "size" : 5,
     }
 
     res = es.search(index=settings.ES_INDEX, body=q)
