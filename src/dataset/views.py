@@ -48,6 +48,7 @@ def search(request):
             applied_filters[k] = val
 
     page_size = 20
+
     datasets, total = search_query(query, filters=filters, offset=(page * page_size) - page_size, limit=page_size)
     page_count = math.ceil(float(total) / page_size)
 

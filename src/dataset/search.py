@@ -63,7 +63,10 @@ def search_query(query, filters=None, offset=0, limit=20):
             {"last_edit_date" : {"order" : "desc"}}
         ]
 
-    res = es.search(index=settings.ES_INDEX, body=q)
+    try:
+        res = es.search(index=settings.ES_INDEX, body=q)
+    except TransportError as te:
+        return [], 0
 
     datasets = [d['_source'] for d in res['hits']['hits']]
 
