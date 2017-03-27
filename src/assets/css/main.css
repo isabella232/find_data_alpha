@@ -646,6 +646,8 @@ hr {
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   border-radius: 0;
+  outline: 1px solid transparent;
+  outline-offset: -1px;
   -webkit-appearance: none;
   -webkit-box-shadow: 0 2px 0 #003618;
   -moz-box-shadow: 0 2px 0 #003618;
@@ -1644,6 +1646,13 @@ div#global-header-bar {
 span.separator::before {
   content: " | ";
   color: #6f777b; }
+
+ul.classic {
+  margin: 0 0 1em 2em;
+  list-style-type: disc; }
+
+table.with-margin {
+  margin: 2em 0 3em 0; }
 
 .dataset-details {
   font-size: 90%;
