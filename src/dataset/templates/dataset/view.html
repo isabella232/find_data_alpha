@@ -34,14 +34,23 @@
         </div>
 
         <div class="column-two-thirds">
-          <p class="dataset-download"><a href="TODO">{% trans 'Download all' %}</a><span class="dataset-size">10MB</span></p>
+          <p class="dataset-download">
+            <a
+                data-ga-trigger="download,{{dataset.name}},all"
+                href="TODO">
+              {% trans 'Download all' %}
+            </a>
+            <span class="dataset-size">10MB</span>
+          </p>
           <ul class="resources">
             {% for resource in dataset.resources %}
               <li>
                 {{ resource.title }}
                 <br/>
                 <a href="TODO">{% trans 'Preview' %}</a>
-                <a href="{% url 'download' dataset.id resource.id %}">{% trans 'Download' %}&nbsp;{{resource.format}}</a>
+                <a
+                    data-ga-trigger="download,{{dataset.name}},{{resource.id}}"
+                    href="{% url 'download' dataset.id resource.id %}">{% trans 'Download' %}&nbsp;{{resource.format}}</a>
                 <span>23KB</span>
               </li>
             {% endfor %}
