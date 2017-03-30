@@ -7,24 +7,27 @@
 
 {% block inner_content %}
   <div class="dashboard">
-    <h1 class="heading-xlarge">Search for data</h1>
+    <h1 class="heading-xlarge">Find UK Government data</h1>
+
+    <div class="grid-rowx">
+        <p class="lede search-blurb">You can use this data to learn
+        more about how government<br/>works, carry out research or build
+        applications and services.
+        </p>
+    </div>
+
 
     <div class="grid-row">
         <form id="search-form" action="/dataset" method="GET" class="column-two-thirds">
           <fieldset>
             <div id="search-box">
             <nobr>
-              <input id="q" name="q" type="text" placeholder='Search for data' class="form-control search" autocomplete="off" style="width: 100%; height: 50px;"/>
+              <input id="q" name="q" type="text" placeholder='' class="form-control search" autocomplete="off" style="width: 100%; height: 50px;"/>
               <button type="submit" class="button" style="height: 50px;  margin-top: -1px">Find data</button>
               </nobr>
             </div>
           </fieldset>
         </form>
-        <p class="lede search-blurb column-two-thirds">Find data published by government departments and agencies,
-        public bodies and local authorities. You can use this data to learn
-        more about how government works, carry out research or build
-        applications and services.
-        </p>
 
     </div>
 
